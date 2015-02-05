@@ -63,5 +63,27 @@ ul, ol {list-style:none}
     position:absolute;
     z-index:-2;
 }
- 
-       
+.scrollup-l {
+width:40px;
+height:40px;
+opacity: 0.1;
+position:fixed;
+bottom:250px;
+left:30px;
+display:none;
+text-indent:-9999px;
+background: url('../images/icon_top.png') no-repeat;
+}
+
+ .scrollup-l:hover,
+ .scrollup-l.active{
+width:40px;
+height:40px;
+opacity: 0.5;
+position:fixed;
+bottom:250px;
+left:30px;
+display:none;
+text-indent:-9999px;
+background: url('../images/icon_top.png') no-repeat;
+}

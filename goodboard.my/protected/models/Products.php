@@ -11,13 +11,17 @@
  * @property string $description
  * @property string $price
  * @property integer $author_id
+ * @property string $author_email
+ * @property date $date
  */
 class Products extends CActiveRecord
 {
-	/**
+	
+        /**
 	 * @return string the associated database table name
 	 */
-	public function tableName()
+        
+        public function tableName()
 	{
 		return 'products';
 	}
@@ -30,12 +34,13 @@ class Products extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, image_big, image_sm, description, price', 'required'),
+			array('title, image_big, description, price', 'required'),
 			array('author_id', 'numerical', 'integerOnly'=>true),
-			array('title, image_big, image_sm, price', 'length', 'max'=>255),
+                     
+			array('title, author_email,  image_sm, price', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, image_big, image_sm, description, price, author_id', 'safe', 'on'=>'search'),
+			array('id, title, image_big, description, price, author_id,  author_email, date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +68,9 @@ class Products extends CActiveRecord
 			'description' => 'Description',
 			'price' => 'Price',
 			'author_id' => 'Author',
+                        'author_email' => 'Author Email',
+                        'date' => 'Date',
+                       
 		);
 	}
 
@@ -91,6 +99,9 @@ class Products extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('author_id',yii::app()->user->id, true);
+                $criteria->compare('author_email',$this->author_email, true);
+                $criteria->compare('date',$this->date, true);
+              
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -107,4 +118,7 @@ class Products extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        
+       
 }

@@ -15,7 +15,7 @@ class ProductsController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			/*'postOnly + delete', // we only allow deletion via POST request*/
 		);
 	}
 
@@ -63,22 +63,53 @@ class ProductsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Products;
-
+                $dir = yii::getPathOfAlias('application.uploads');
+                $uploaded = false;
+                $upload = new Upload();
+                $name;
+                
+                 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Products']))
-		{
-			$model->attributes=$_POST['Products'];
+                if (isset($_POST['Upload'])){  
+                    
+                        $upload->attributes = $_POST['Upload'];
+                        $file = CUploadedFile::getInstance($upload, 'file');
+                        
+                        if($upload->validate()){
+                            $uploaded = $file->saveAs($dir . '/' . $file->getName());
+                            $name = yii::app()->baseUrl . '/protected/uploads/' . $file->getName();
+                          
+                       
+                            if($uploaded){
+                                $model->image_big=$name;
+                            }			
+                          
+                        }	
+                }
+              
+		if(isset($_POST['Products'])){
+                    
+                        $model->attributes=$_POST['Products'];
                         $model->author_id=Yii::app()->user->id;
+                        $model->author_email=Yii::app()->user->email;
+                        $model->date=date('Y-m-d H:i:s');
+                        
+                       
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
+				$this->redirect(array('view','id'=>$model->id));  
+                } 
+                  
 		$this->render('create',array(
 			'model'=>$model,
+                        'upload'=>$upload,
+                        'uploaded'=>$uploaded,
+                        'dir'=>$dir,
+                        'name'=>$name,
 		));
-	}
+	}  
+        
+        
 
 	/**
 	 * Updates a particular model.
@@ -95,8 +126,11 @@ class ProductsController extends Controller
 		if(isset($_POST['Products']))
 		{
 			$model->attributes=$_POST['Products'];
+                        $model->author_email=Yii::app()->user->email;
+                        $model->date=date('Y-m-d H:i:s');
+                        
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                            $this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -172,4 +206,29 @@ class ProductsController extends Controller
 			Yii::app()->end();
 		}
 	}
+    
+        
+        function actionUpload()
+    {
+            $dir = yii::getPathOfAlias('application.uploads');
+            $uploaded = false;
+            $model = new Upload();
+            if (isset($_POST['Upload'])){
+                $model->attributes = $_POST['Upload'];
+                $file = CUploadedFile::getInstance($model, 'file');
+                if($model->validate()){
+                    $uploaded = $file->saveAs($dir . '/' . $file->getName());
+                     $file_dir = ($dir . '/' . $file->getName());
+                }
+            }
+            $this->render('create', array(
+                'model' => $model,
+                'uploaded' => $uploaded,
+                'dir' => $dir,
+                'filedir'=> $file_dir
+                ));
+    }
+    
+ 
+    
 }

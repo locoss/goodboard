@@ -15,4 +15,12 @@ $this->breadcrumbs=array(
 
 
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array(
+    
+    'model'=>$model,
+    'upload'=>$upload,
+    'uploaded'=>$uploaded,
+    'dir'=>$dir,
+    'name'=>$name,
+    )); ?>
+

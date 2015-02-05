@@ -6,56 +6,78 @@ $this->breadcrumbs=array(
 	'Products',
 );
 
-/*$this->menu=array(
-	array('label'=>'Create Products', 'url'=>array('create')),
-	array('label'=>'Manage Products', 'url'=>array('admin')),
-);*/
 ?>
 
  <!--Название страницы-->
       
-      <div class="container" style="padding-top: 50px;">
+      <div class="container" style="padding-top: 50px; padding-bottom: 20px;">
           <div class="row">
               <h1>Sign up and click to choose any goods</h1>
           </div>
       
 
-<!--стрелки paginator
-
-      
-    <div class = "container">
-        <div class="row">
-                <div class="col-md-6 col-md-offset-5 col-sm-offset-5 col-xs-offset-4">
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
+          <div class="row" style="padding-top: 20px;">
+              <span style="padding-right: 30px;"><strong>Sort by:</strong></span>
+                <div class="btn-group btn-group">
+                    
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                             Title
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a class="glyphicon glyphicon-sort-by-attributes" 
+                                       href="<?=Yii::app()->createUrl("products/index&Products_sort=title");?>"> 
+                                    </a>
+                                </li>
+                                <li><a class="glyphicon glyphicon-sort-by-attributes-alt" 
+                                        href="<?=Yii::app()->createUrl("products/index&Products_sort=title.desc");?>">
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                             Date
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a class="glyphicon glyphicon-sort-by-attributes" 
+                                       href="<?=Yii::app()->createUrl("products/index&Products_sort=date");?>"> 
+                                    </a>
+                                </li>
+                                <li><a class="glyphicon glyphicon-sort-by-attributes-alt" 
+                                        href="<?=Yii::app()->createUrl("products/index&Products_sort=date.desc");?>">
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                             Price
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a class="glyphicon glyphicon-sort-by-attributes" 
+                                       href="<?=Yii::app()->createUrl("products/index&Products_sort=price");?>"> 
+                                    </a>
+                                </li>
+                                <li><a class="glyphicon glyphicon-sort-by-attributes-alt" 
+                                        href="<?=Yii::app()->createUrl("products/index&Products_sort=price.desc");?>">
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                    
                 </div>
-            </div>-->
+              
+          </div>
+     
 
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
-)); ?></div>
-
-<!--Стрелки paginator
-            
-            <div class="row">
-                <div class="col-md-6 col-md-offset-5 col-sm-offset-5 col-xs-offset-4">
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>-->
-            </div></div>
+)); ?> 
+      <a class="scrollup-l" href="#"></a>
+      </div>

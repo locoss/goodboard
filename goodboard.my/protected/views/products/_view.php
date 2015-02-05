@@ -3,38 +3,7 @@
 /* @var $data Products */
 ?>
 
-<!--<div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('title')); ?>:</b>
-	<?php echo CHtml::encode($data->title); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('image_big')); ?>:</b>
-	<?php echo CHtml::encode($data->image_big); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('image_sm')); ?>:</b>
-	<?php echo CHtml::encode($data->image_sm); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('price')); ?>:</b>
-	<?php echo CHtml::encode($data->price); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('author_id')); ?>:</b>
-	<?php echo CHtml::encode($data->author_id); ?>
-	<br />
-            
-
-</div>-->
 
 <div class="view">
 
@@ -48,7 +17,7 @@
                                 <div class="col-md-2 col-sm-3 col-xs-4 visible-lg visible-md visible-sm visible-xs">
                                     
                                     <a href="<?=Yii::app()->createUrl("products/view&id=$data->id");?>">
-                                        <img src="<?php echo CHtml::encode($data->image_sm); ?>" style="margin-top: 23px;" alt="">
+                                        <img src="<?php echo CHtml::encode($data->image_big); ?>" style="margin-top: 23px; width: 80%;" alt="">
                                     </a>
                                 </div>
                                 
@@ -67,7 +36,7 @@
                                             echo $print[$i]. " ";
                                             $i++;
                                             }?>
-                                            <a href="<?=Yii::app()->createUrl("users/view&id=$data->author_id");?>">... Читать далее...</a>
+                                            <a href="<?=Yii::app()->createUrl("users/view&id=$data->id");?>">... more...</a>
                                                 </p>
                                         </div>
                                         <div class="col-sm-12 visible-sm">
@@ -80,7 +49,7 @@
                                             echo $print[$i]. " ";
                                             $i++;
                                             }
-                                                ?><a href="<?=Yii::app()->createUrl("products/view&id=$data->author_id");?>">... Читать далее...</a>
+                                                ?><a href="<?=Yii::app()->createUrl("products/view&id=$data->id");?>">... more...</a>
                                                 </p>
                                         </div>
                                     </div>
@@ -104,13 +73,12 @@
                                             echo $print[$i]. " ";
                                             $i++;
                                             }
-                                                ?><a href="<?=Yii::app()->createUrl("products/view&id=$data->author_id");?>">... Читать далее...</a>
+                                                ?><a href="<?=Yii::app()->createUrl("products/view&id=$data->id");?>">... more...</a>
                                             </p>
                                     </div>
                                      <div class="row">
                                          <a href="<?=Yii::app()->createUrl("users/view&id=$data->author_id");?>"><p>
-                                             <?php echo "Watch author >>";
-                                             //CHtml::encode($data->author_id);?></p></a>
+                                             <?php  echo $data->author_email . " | " . $data->date;?></p></a>
                                     </div>
                                 </div>    
                                  <div class="col-md-2 col-sm-4 col-xs-3 visible-lg visible-md visible-sm visible-xs">

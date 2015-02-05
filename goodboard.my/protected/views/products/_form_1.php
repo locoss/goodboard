@@ -30,7 +30,8 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'image_big'); ?>
 		<?php echo $form->textField($model,'image_big',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'image_big'); ?>
+		<?php echo  $form->error($model,'image_big'); ?>
+                
 	</div>
 
 	<div class="row">
@@ -41,7 +42,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>62)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
@@ -52,9 +53,16 @@
 	</div>
 
 	<div class="row">
-		<?php //echo $form->labelEx($model,'author_id'); ?>
-		<?php //echo $form->textField($model,'author_id'); ?>
-		<?php //echo $form->error($model,'author_id'); ?>
+		<?php $form->labelEx($model,'author_id'); ?>
+		<?php $form->textField($model,'author_id'); ?>
+		<?php $form->error($model,'author_id'); ?>
+	</div>
+        
+        <div class="row">
+		<?php $form->labelEx($model,'author_email'); ?>
+		<?php $form->textField($model,'author_email'); ?>
+		<?php $form->error($model,'author_email'); ?>
+            
 	</div>
 
 	<div class="row buttons">

@@ -7,7 +7,13 @@
     
     <h1>Create Products</h1>
 <div class="form">
-
+<div class="row">
+		
+                <?php if($uploaded):?>
+                    <p>File successful downloaded</p>
+                  
+                    <?php echo 'Path of your image is:' . $model->image_big;?>
+                
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'products-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
@@ -20,23 +26,24 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
 		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'title'); ?>
+             
+         
 	</div>
 
-	<div class="row">
+	<div class="row hidden">
 		<?php echo $form->labelEx($model,'image_big'); ?>
 		<?php echo $form->textField($model,'image_big',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'image_big'); ?>
+               
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'image_sm'); ?>
-		<?php echo $form->textField($model,'image_sm',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'image_sm'); ?>
+		     
 	</div>
 
 	<div class="row">
@@ -51,17 +58,21 @@
 		<?php echo $form->error($model,'price'); ?>
 	</div>
 
-	<div class="row">
-                
-		<?php $form->labelEx($model,'author_id'); ?>
-		<?php $form->textField($model,'author_id'); ?>
-		<?php $form->error($model,'author_id'); ?>
-	</div>
+	
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?> 
 	</div>
-
+ 
 <?php $this->endWidget(); ?>
+    <?php else:?>
+                <?php echo CHtml::beginForm('','post', array('enctype'=>'multipart/form-data')); ?>
+                <?php echo CHtml::activeLabelEx($upload, 'Image')?>
+                <?php echo CHtml::error($upload, 'file');?>
+                <?php echo CHtml::activeFileField($upload, 'file');?>
+                <?php echo CHtml::submitbutton('Upload');?>
+               
+                <?php echo CHtml::endForm(); ?>    
+	</div><?php endif;?>
 
 </div><!-- form --></div>
